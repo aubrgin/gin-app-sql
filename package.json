@@ -9,6 +9,7 @@
     "electron:serve": "vue-cli-service electron:serve"
   },
   "dependencies": {
+    "@aubrgin/gin-fs": "^0.1.2",
     "core-js": "^2.6.5",
     "dns": "^0.2.2",
     "net": "^1.0.2",

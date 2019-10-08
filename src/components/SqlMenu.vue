@@ -78,16 +78,16 @@ export default {
      height: 100%;
      cursor: ew-resize;
      display: inline-block;
-     background-color: #494960;
-     border-right: solid 1px #595970;
-     border-left: solid 1px #595970;
+     background-color: var(--color-primary);
+     border-right: solid 1px var(--color-active);
+     border-left: solid 1px var(--color-active);
  }
  .sql-menu-container {
      display: flex;
      height: 100%;
      position: relative;
      z-index: 1px;
-     background-color: #393950;
+     background-color: var(--color-background);
      left: 0;
  }
  .sql-menu {
@@ -101,8 +101,8 @@ export default {
      border: none;
      width: 100%;
      font-weight: bold;
-     color: #EEEEEE;
-     background-color: #494960;
+     color: var(--color-text);
+     background-color: var(--color-primary);
      text-overflow: ellipsis;
      text-align: left;
      margin: 2px;
@@ -110,15 +110,15 @@ export default {
      cursor: pointer;
  }
  .schema:hover {
-     background-color: #797990;
-     color: #393950;
+     background-color: var(--color-active);
+     color: var(--color-background);
  }
  .table {
      border: none;
      width: 100%;
      font-weight: bold;
-     color: #EEEEEE;
-     background-color: #494960;
+     color: var(--color-text);
+     background-color: var(--color-primary);
      text-overflow: ellipsis;
      text-align: left;
      margin: 2px;
@@ -127,11 +127,11 @@ export default {
      cursor: pointer;
  }
  .table:hover {
-     background-color: #797990;
-     color: #393950;
+     background-color: var(--color-active);
+     color: var(--color-background);
  }
  .schema.open {
-     background-color: #797990;
-     color: #393950;
+     background-color: var(--color-active);
+     color: var(--color-background);
  }
 </style>

@@ -9,12 +9,21 @@
     <div class="sql-container">
       <div class="sql-toolbar">
         <button
+          @click="executeQuery"
+          class="sql-tool"
+        >
+          Execute
+        </button>
+        <button
           class="sql-tool"
           @click="openConfig"
         >
           Config
         </button>
-        <button @click="$emit('close')">
+        <button
+          class="sql-tool"
+          @click="$emit('close')"
+        >
           Close
         </button>
       </div>
@@ -23,9 +32,6 @@
           v-model="query"
           class="sql-editor"
         />
-        <button @click="executeQuery">
-          Execute
-        </button>
         <SqlTable :value="data" />
         <SqlForm
           v-if="modalOpen"
@@ -58,6 +64,7 @@ import { Client } from 'pg';
 import SqlTable from './SqlTable.vue';
 import SqlMenu from './SqlMenu.vue';
 import SqlForm from './SqlForm.vue';
+import ginFs from '@aubrgin/gin-fs';
 
 export default {
   name: 'Sql',
@@ -89,10 +96,15 @@ export default {
     },
   },
   created() {
+    this.config = ginFs.getConfig('config', 'sql');
     this.syncStructure();
   },
   methods: {
     openConfig() {
+      if (this.modalOpen) {
+        this.modalOpen = false;
+        return;
+      }
       this.modalOpen = true;
       this.fields = [
         'host',
@@ -102,8 +114,8 @@ export default {
         'port',
       ];
       this.submit = (event) => {
-        this.log(event);
         this.config = event;
+        ginFs.setConfig('config', this.config, 'sql');
         this.modalOpen = false;
         this.syncStructure();
       };
@@ -152,6 +164,7 @@ export default {
 <style>
  .sql-app {
      display: flex;
+   background-color: var(--color-background);
      height: 100%;
  }
  .sql-editor {
@@ -173,22 +186,30 @@ export default {
  .sql-toolbar{
      height: 64px;
      width: 100%;
-     background-color: #393950;
+     background-color: var(--color-background-alternate);
      padding: 8px;
      box-sizing: border-box;
+   white-space: nowrap;
+
  }
 
  .sql-tool {
      height: 48px;
-     background-color: blue;
+   width: 64px;
+     background-color: var(--color-alternate);
      box-sizing: border-box;
      padding: auto;
      color: white;
      display: inline-block;
+     border: none;
+   margin-right: 8px;
+ }
+ .sql-tool:hover {
+   background-color: var(--color-active);
  }
  .sql-history-item {
      color: white;
-     background-color: #393950;
+     background-color: var(--color-primary);
      padding: 4px;
      margin: 4px;
  }
