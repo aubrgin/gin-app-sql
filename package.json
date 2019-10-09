@@ -1,6 +1,6 @@
 {
   "name": "@aubrgin/gin-app-sql",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/@aubrgin/gin-app-sql.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
